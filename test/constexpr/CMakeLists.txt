@@ -9,8 +9,8 @@ function(add_constexpr_test TEST_NAME)
   add_executable(constexpr_${TEST_NAME} ${ADD_CONSTEXPR_TEST_SOURCES})
   target_link_libraries(
     constexpr_${TEST_NAME}
-    PRIVATE myproject::myproject_warnings
-            myproject::myproject_options
+    PRIVATE TemplateTest::TemplateTest_warnings
+            TemplateTest::TemplateTest_options
             ${ADD_CONSTEXPR_TEST_LIBRARIES}
             Catch2::Catch2WithMain)
   target_link_system_libraries(constexpr_${TEST_NAME} PRIVATE ${ADD_CONSTEXPR_TEST_SYSTEM_LIBRARIES})
@@ -34,8 +34,8 @@ function(add_constexpr_test TEST_NAME)
   add_executable(relaxed_constexpr_${TEST_NAME} ${ADD_CONSTEXPR_TEST_SOURCES})
   target_link_libraries(
     relaxed_constexpr_${TEST_NAME}
-    PRIVATE myproject::myproject_warnings
-            myproject::myproject_options
+    PRIVATE TemplateTest::TemplateTest_warnings
+            TemplateTest::TemplateTest_options
             ${ADD_CONSTEXPR_TEST_LIBRARIES}
             Catch2::Catch2WithMain)
   target_link_system_libraries(relaxed_constexpr_${TEST_NAME} PRIVATE ${ADD_CONSTEXPR_TEST_SYSTEM_LIBRARIES})
@@ -62,4 +62,4 @@ add_constexpr_test(
   SOURCES
   constexpr_tests.cpp
   LIBRARIES
-  myproject::sample_library)
+  TemplateTest::sample_library)

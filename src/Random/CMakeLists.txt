@@ -2,9 +2,9 @@ include(GenerateExportHeader)
 
 add_library(Random Sampler2d.cpp)
 
-add_library(myproject::Random ALIAS Random)
+add_library(TemplateTest::Random ALIAS Random)
 
-target_link_libraries(Random PRIVATE myproject_options myproject_warnings)
+target_link_libraries(Random PRIVATE TemplateTest_options TemplateTest_warnings)
 target_link_system_libraries(Random PRIVATE Eigen3::Eigen)
 
 target_include_directories(Random ${WARNING_GUARD} PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
@@ -18,7 +18,7 @@ set_target_properties(
              CXX_VISIBILITY_PRESET hidden
              VISIBILITY_INLINES_HIDDEN YES)
 
-generate_export_header(Random EXPORT_FILE_NAME ${PROJECT_BINARY_DIR}/include/myproject/Random_export.hpp)
+generate_export_header(Random EXPORT_FILE_NAME ${PROJECT_BINARY_DIR}/include/TemplateTest/Random_export.hpp)
 
 if(NOT BUILD_SHARED_LIBS)
   target_compile_definitions(Random PUBLIC Random_STATIC_DEFINE)

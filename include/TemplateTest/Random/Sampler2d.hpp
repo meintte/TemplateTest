@@ -2,7 +2,7 @@
 
 #include <Eigen/Dense>
 #include <Eigen/Geometry>
-#include <myproject/Random/Random.hpp>
+#include <TemplateTest/Random/Random.hpp>
 
 class Sampler2d {
 public:
