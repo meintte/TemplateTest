@@ -1,10 +1,10 @@
+#include <TemplateTest/Grid/Domain.hpp>
 #include <catch2/catch_test_macros.hpp>
-#include <TemplateTest/sample_library.hpp>
+#include <catch2/matchers/catch_matchers_floating_point.hpp>
+// NOLINTBEGIN (readability-function-cognitive-complexity)
 
-TEST_CASE("Factorials are computed", "[sample_library][factorial]") {
-    REQUIRE(factorial(0) == 1);
-    REQUIRE(factorial(1) == 1);
-    REQUIRE(factorial(2) == 2);
-    REQUIRE(factorial(3) == 6);
-    REQUIRE(factorial(10) == 3628800);
-}
+// For floating point comparisons, we need to specify a tolerance.
+constexpr double relativeTolerance = 0.001;
+constexpr double absoluteTolerance = 0.000001;
+
+// NOLINTEND (readability-function-cognitive-complexity)

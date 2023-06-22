@@ -7,7 +7,7 @@ project(CmakeConfigPackageTests LANGUAGES CXX)
 if(PROJECT_IS_TOP_LEVEL OR TEST_INSTALLED_VERSION)
   enable_testing()
 
-  find_package(TemplateTest CONFIG REQUIRED) # for intro, project_options, ...
+  find_package(TemplateTest CONFIG REQUIRED) # for App, project_options, ...
 
   if(NOT TARGET TemplateTest_options)
     message(FATAL_ERROR "Requiered config package not found!")
