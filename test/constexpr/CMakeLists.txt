@@ -36,8 +36,8 @@ function(add_constexpr_test TEST_NAME)
     relaxed_constexpr_${TEST_NAME}
     PRIVATE TemplateTest::TemplateTest_warnings
             TemplateTest::TemplateTest_options
-            ${ADD_CONSTEXPR_TEST_LIBRARIES}
-            Catch2::Catch2WithMain)
+            Catch2::Catch2WithMain
+            ${ADD_CONSTEXPR_TEST_LIBRARIES})
   target_link_system_libraries(relaxed_constexpr_${TEST_NAME} PRIVATE ${ADD_CONSTEXPR_TEST_SYSTEM_LIBRARIES})
 
   target_compile_definitions(relaxed_constexpr_${TEST_NAME} PRIVATE -DCATCH_CONFIG_RUNTIME_STATIC_REQUIRE)
@@ -62,4 +62,4 @@ add_constexpr_test(
   SOURCES
   constexpr_tests.cpp
   LIBRARIES
-  TemplateTest::sample_library)
+  TemplateTest::Grid)

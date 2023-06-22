@@ -34,57 +34,6 @@ function(TemplateTest_setup_dependencies)
     cpmaddpackage("gh:CLIUtils/CLI11@2.3.2")
   endif()
 
-  if(NOT TARGET ftxui::screen)
-    cpmaddpackage(
-      NAME
-      FTXUI
-      GITHUB_REPOSITORY
-      "ArthurSonzogni/FTXUI"
-      GIT_TAG
-      "v4.1.1"
-      OPTIONS
-      "FTXUI_BUILD_EXAMPLES OFF"
-      "FTXUI_BUILD_DOCS OFF"
-      "FTXUI_BUILD_TESTS OFF"
-      "FTXUI_BUILD_TESTS_FUZZER OFF"
-      "FTXUI_ENABLE_INSTALL OFF"
-      EXCLUDE_FROM_ALL
-      YES)
-  endif()
-
-  if(NOT TARGET tools::tools)
-    cpmaddpackage("gh:lefticus/tools#update_build_system")
-  endif()
-
-  # if(NOT TARGET glfw::glfw)
-  #   cpmaddpackage(
-  #     NAME
-  #     glfw
-  #     GITHUB_REPOSITORY
-  #     "glfw/glfw"
-  #     GIT_TAG
-  #     "3.3.8"
-  #     OPTIONS
-  #     "GLFW_BUILD_EXAMPLES OFF"
-  #     "GLFW_BUILD_TESTS OFF"
-  #     "GLFW_BUILD_DOCS OFF"
-  #     "GLFW_INSTALL OFF"
-  #     EXCLUDE_FROM_ALL
-  #     YES)
-  # endif()
-
-  # if(NOT TARGET imgui::imgui)
-  #   cpmaddpackage(
-  #     NAME
-  #     imgui
-  #     GITHUB_REPOSITORY
-  #     "ocornut/imgui"
-  #     GIT_TAG
-  #     "docking"
-  #     EXCLUDE_FROM_ALL
-  #     YES)
-  # endif()
-
   if(NOT TARGET Eigen3::Eigen)
     cpmaddpackage(
       NAME
