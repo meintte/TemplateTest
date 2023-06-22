@@ -1,6 +1,6 @@
 #include <TemplateTest/Grid/Domain.hpp>
 #include <catch2/catch_test_macros.hpp>
-// #include <catch2/catch_approx.hpp>
+#include <catch2/matchers/catch_matchers_floating_point.hpp>
 // NOLINTBEGIN (readability-function-cognitive-complexity)
 
 // For floating point comparisons, we need to specify a tolerance.
@@ -10,6 +10,10 @@ constexpr double absoluteTolerance = 0.000001;
 constexpr bool checkEqual(double test, double expected) {
     return std::abs(test - expected) < absoluteTolerance ||
            std::abs(test - expected) < relativeTolerance * std::abs(expected);
+}
+TEST_CASE("checkEqual") {
+    STATIC_REQUIRE(checkEqual(2.0, 2.0));
+    STATIC_REQUIRE(checkEqual(2.000001, 2.0));
 }
 
 TEST_CASE("Domain class tests", "[Domain]") {
