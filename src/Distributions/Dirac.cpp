@@ -1,5 +1,4 @@
 #include <TemplateTest/Distributions/Dirac.hpp>
-#include <fmt/format.h>
 
 namespace Distribution {
 
