@@ -16,8 +16,8 @@ UserParameters UserParameters::parse(int argc, const char** argv) {
                              TemplateTest::cmake::project_version)};
 
     // general flags
-    const std::string str_version{TemplateTest::cmake::project_version};
-    app.set_version_flag("-v,--version", str_version, "Show version information");
+    bool show_version = false;
+    app.add_flag("-v,--version", show_version, "Show version information");
     app.set_config("--config")->check(CLI::ExistingFile);
     app.option_defaults()->always_capture_default();
 
@@ -58,6 +58,11 @@ UserParameters UserParameters::parse(int argc, const char** argv) {
         app.parse(argc, argv);
     } catch (const CLI::ParseError& e) {
         throw ExitCode(app.exit(e));
+    }
+
+    if (show_version) {
+        fmt::print("{}\n", TemplateTest::cmake::project_version);
+        throw ExitCode(EXIT_SUCCESS);
     }
 
     spdlog::info("Config:\n{}", app.config_to_str(true, true));
