@@ -7,7 +7,7 @@
 constexpr double relativeTolerance = 0.001;
 constexpr double absoluteTolerance = 0.000001;
 
-TEST_CASE("Domain class tests", "[Domain]") {
+TEST_CASE("Domain class tests", "[Grid][Domain]") {
     constexpr Domain domain{10, 20, 1.0, 2.0};
     SECTION("Constructor") {
         REQUIRE(domain.nx == 10);
