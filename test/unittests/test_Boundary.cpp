@@ -1,5 +1,6 @@
 #include <TemplateTest/Grid/Boundary.hpp>
 #include <catch2/catch_test_macros.hpp>
+#include <catch2/matchers/catch_matchers_string.hpp>
 // NOLINTBEGIN (readability-function-cognitive-complexity)
 
 using namespace Boundary;
@@ -74,6 +75,18 @@ TEST_CASE("Create boundary condition with type enum", "[Grid][Boundary]") {
         for (const auto& c : bc) {
             REQUIRE(c->type() == Type::PERIODIC);
             REQUIRE(c->value() == 1.0);
+        }
+    }
+
+    SECTION("Unknown") {
+        REQUIRE_THROWS_AS(create_boundary_condition(3, Type::UNKNOWN, 1.0),
+                          std::exception);
+        try {
+            create_boundary_condition(3, Type::UNKNOWN, 1.0);
+        } catch (const std::exception& e) {
+            REQUIRE_THAT(e.what(), Catch::Matchers::Equals(
+                                       "Unknown boundary condition type",
+                                       Catch::CaseSensitive::No));
         }
     }
 }
