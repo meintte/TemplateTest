@@ -1,3 +1,4 @@
 add_subdirectory(App)
 add_subdirectory(Random)
+add_subdirectory(Distributions)
 add_subdirectory(Grid)

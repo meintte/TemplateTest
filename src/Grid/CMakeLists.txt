@@ -1,5 +1,3 @@
-include(GenerateExportHeader)
-
 add_library(Grid INTERFACE)
 add_library(TemplateTest::Grid ALIAS Grid)
 
@@ -15,8 +13,6 @@ set_target_properties(
   PROPERTIES VERSION ${PROJECT_VERSION}
              CXX_VISIBILITY_PRESET hidden
              VISIBILITY_INLINES_HIDDEN YES)
-
-generate_export_header(Grid EXPORT_FILE_NAME ${PROJECT_BINARY_DIR}/include/TemplateTest/Grid_export.hpp)
 
 if(NOT BUILD_SHARED_LIBS)
   target_compile_definitions(Grid INTERFACE Grid_STATIC_DEFINE)
