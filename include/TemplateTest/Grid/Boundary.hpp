@@ -2,6 +2,7 @@
 #include <concepts>
 #include <map>
 #include <memory>
+#include <stdexcept>
 #include <string>
 #include <vector>
 
@@ -79,7 +80,7 @@ std::vector<std::unique_ptr<Condition>> create_boundary_condition(
             return create_boundary_condition<Periodic>(
                 n, std::forward<Args>(args)...);
         default:
-            throw std::runtime_error("Unknown boundary condition type");
+            throw std::invalid_argument("Unknown boundary condition type");
     }
 }
 }  // namespace Boundary
