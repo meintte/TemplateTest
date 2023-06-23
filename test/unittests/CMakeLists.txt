@@ -45,3 +45,36 @@ add_unit_test(
   test_Exponential.cpp
   LIBRARIES
   TemplateTest::Distributions)
+
+# Fractures
+add_unit_test(
+  Fracture
+  SOURCES
+  test_Fracture.cpp
+  LIBRARIES
+  TemplateTest::Fractures
+  SYSTEM_LIBRARIES
+  Eigen3::Eigen)
+
+  add_unit_test(
+  FractureFromApertureFunction
+  SOURCES
+  test_FractureFromApertureFunction.cpp
+  LIBRARIES
+  TemplateTest::Fractures
+  SYSTEM_LIBRARIES
+  Eigen3::Eigen)
+
+add_unit_test(
+  Family
+  SOURCES
+  test_Family.cpp
+  LIBRARIES
+  TemplateTest::Fractures)
+
+add_unit_test(
+  Factory
+  SOURCES
+  test_Factory.cpp
+  LIBRARIES
+  TemplateTest::Fractures)
