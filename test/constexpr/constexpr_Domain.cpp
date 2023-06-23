@@ -8,8 +8,9 @@ constexpr double relativeTolerance = 0.001;
 constexpr double absoluteTolerance = 0.000001;
 // TODO: catch2 constexpr matchers for floating point comparisons?
 constexpr bool checkEqual(double test, double expected) {
-    return std::abs(test - expected) < absoluteTolerance ||
-           std::abs(test - expected) < relativeTolerance * std::abs(expected);
+    constexpr auto abs = [](double x) { return x < 0 ? -x : x; };
+    return abs(test - expected) < absoluteTolerance ||
+           abs(test - expected) < relativeTolerance * abs(expected);
 }
 TEST_CASE("checkEqual") {
     STATIC_REQUIRE(checkEqual(2.0, 2.0));

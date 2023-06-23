@@ -9,6 +9,7 @@ add_test(NAME cli.has_help COMMAND App --help)
 add_test(NAME cli.version_matches COMMAND App --version)
 set_tests_properties(cli.version_matches PROPERTIES PASS_REGULAR_EXPRESSION "${PROJECT_VERSION}")
 
+# Grid
 add_unit_test(
   Domain
   SOURCES
@@ -16,6 +17,14 @@ add_unit_test(
   LIBRARIES
   TemplateTest::Grid)
 
+add_unit_test(
+  Boundary
+  SOURCES
+  test_Boundary.cpp
+  LIBRARIES
+  TemplateTest::Grid)
+
+# Distributions
 add_unit_test(
   Dirac
   SOURCES
