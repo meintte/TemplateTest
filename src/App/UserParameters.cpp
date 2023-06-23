@@ -16,9 +16,8 @@ UserParameters UserParameters::parse(int argc, const char** argv) {
                              TemplateTest::cmake::project_version)};
 
     // general flags
-    app.set_version_flag("--version",
-                         std::string{TemplateTest::cmake::project_version},
-                         "Show version information");
+    const std::string str_version{TemplateTest::cmake::project_version};
+    app.set_version_flag("-v,--version", str_version, "Show version information");
     app.set_config("--config")->check(CLI::ExistingFile);
     app.option_defaults()->always_capture_default();
 
