@@ -18,6 +18,7 @@ endif()
 # ---- Dependencies ----
 
 include(${Catch2_SOURCE_DIR}/extras/Catch.cmake)
+include(../cmake/Tests.cmake)
 
 # ---- Tests ----
 add_subdirectory(constexpr)
