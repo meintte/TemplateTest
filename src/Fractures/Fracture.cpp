@@ -67,8 +67,8 @@ bool FromApertureFunction::fineInsideCheckFromGlobalPoint(
 }
 bool FromApertureFunction::fineInsideCheckFromLocalPoint(
     const Eigen::Vector2d& point) const {
-    double x = point.x();
-    double y = point.y();
+    const double x = point.x();
+    const double y = point.y();
 
     if (std::abs(x) > 0.5 * m_length) {
         return false;
@@ -87,7 +87,7 @@ double FromApertureFunction::getAperture(const Eigen::Vector2d& point) const {
 
 double FromApertureFunction::getPermeability(
     const Eigen::Vector2d& point) const {
-    double aperture = getAperture(point);
+    const double aperture = getAperture(point);
     // parallel plate flow (Hagen-Poiseuille, cubic law)
     return aperture * aperture / 12.0;
 }
@@ -100,7 +100,7 @@ double ConstantAperture::apertureFunction(double x) const {
 }
 
 double LinearAperture::apertureFunction(double x) const {
-    double abs2x = 2.0 * std::abs(x);
+    const double abs2x = 2.0 * std::abs(x);
     if (abs2x <= m_length) {
         return m_maxAperture * (1.0 - abs2x / m_length);
     }
