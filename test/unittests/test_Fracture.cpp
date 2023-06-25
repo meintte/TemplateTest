@@ -2,6 +2,7 @@
 #include <TemplateTest/Fractures/Fracture.hpp>
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
+#include <numbers>
 // NOLINTBEGIN (readability-function-cognitive-complexity)
 
 // For floating point comparisons, we need to specify a tolerance.
@@ -12,7 +13,8 @@ class MockFracture : public Fractures::Fracture {
 public:
     using Fractures::Fracture::Fracture;
 
-    double getAperture([[maybe_unused]] const Eigen::Vector2d& point) const override {
+    double getAperture(
+        [[maybe_unused]] const Eigen::Vector2d& point) const override {
         return 1.0;
     }
 
