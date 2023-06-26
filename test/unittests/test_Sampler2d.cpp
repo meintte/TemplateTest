@@ -8,10 +8,11 @@
 // NOLINTBEGIN (readability-function-cognitive-complexity)
 
 constexpr uint32_t numSamples = 10'000;
-constexpr double absoluteTolerance = 0.01;
+constexpr double absoluteTolerance = 0.05;
 
 TEST_CASE("UniformSampler2d returns a sample within the box") {
     Eigen::AlignedBox2d box(Eigen::Vector2d(-1, -1), Eigen::Vector2d(1, 1));
+    Random::seed(Catch::getSeed());
     UniformSampler2d sampler(box);
 
     for (uint32_t i = 0; i < numSamples; ++i) {

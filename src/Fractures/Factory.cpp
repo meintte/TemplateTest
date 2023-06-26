@@ -27,7 +27,7 @@ std::vector<std::unique_ptr<Fracture>> Factory::createFractures() const {
 
     std::vector<std::unique_ptr<Fracture>> fractures;
     for (const auto& [family, sampler, numberDensity] : m_families) {
-        double nf_d = numberDensity * sampler->getArea();
+        const double nf_d = numberDensity * sampler->getArea();
         auto nf = static_cast<uint32_t>(nf_d);
         if (nf_d - nf > Random::nextDouble()) {
             ++nf;
@@ -79,15 +79,15 @@ std::size_t Factory::getRandomFamilyIdx() const {
     return dist(Random::getEngine());
 }
 
-std::vector<std::unique_ptr<Fracture>> RejectionSamplingAABBFactory::createFractures()
-    const {
+std::vector<std::unique_ptr<Fracture>>
+RejectionSamplingAABBFactory::createFractures() const {
     if (m_families.empty()) {
         throw std::runtime_error("No families registered");
     }
 
     std::vector<std::unique_ptr<Fracture>> fractures;
     for (const auto& [family, sampler, numberDensity] : m_families) {
-        double nf_d = numberDensity * sampler->getArea();
+        const double nf_d = numberDensity * sampler->getArea();
         auto nf = static_cast<uint32_t>(nf_d);
         if (nf_d - nf > Random::nextDouble()) {
             ++nf;
@@ -125,8 +125,8 @@ std::vector<std::unique_ptr<Fracture>> RejectionSamplingAABBFactory::createFract
     return fractures;
 }
 
-std::vector<std::unique_ptr<Fracture>> RejectionSamplingAABBFactory::createFractures(
-    uint32_t n) const {
+std::vector<std::unique_ptr<Fracture>>
+RejectionSamplingAABBFactory::createFractures(uint32_t n) const {
     if (m_families.empty()) {
         throw std::runtime_error("No families registered");
     }
