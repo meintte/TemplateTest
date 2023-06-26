@@ -1,5 +1,5 @@
 #include <TemplateTest/Fractures/Fracture.hpp>
-
+#include <numbers>
 namespace Fractures {
 
 Fracture::Fracture(Eigen::Vector2d center, double angle)
@@ -92,6 +92,7 @@ double FromApertureFunction::getPermeability(
     return aperture * aperture / 12.0;
 }
 
+double ConstantAperture::getArea() const { return m_length * m_maxAperture; }
 double ConstantAperture::apertureFunction(double x) const {
     if (2.0 * std::abs(x) <= m_length) {
         return m_maxAperture;
@@ -99,6 +100,9 @@ double ConstantAperture::apertureFunction(double x) const {
     return 0.0;
 }
 
+double LinearAperture::getArea() const {
+    return m_length * m_maxAperture * 0.5;
+}
 double LinearAperture::apertureFunction(double x) const {
     const double abs2x = 2.0 * std::abs(x);
     if (abs2x <= m_length) {
@@ -107,6 +111,9 @@ double LinearAperture::apertureFunction(double x) const {
     return 0.0;
 }
 
+double QuadraticAperture::getArea() const {
+    return m_length * m_maxAperture * 4.0 / 3.0;
+}
 double QuadraticAperture::apertureFunction(double x) const {
     if (2.0 * std::abs(x) <= m_length) {
         return m_maxAperture * (1.0 - 4.0 * x * x / (m_length * m_length));
@@ -114,6 +121,9 @@ double QuadraticAperture::apertureFunction(double x) const {
     return 0.0;
 }
 
+double EllipticAperture::getArea() const {
+    return m_length * m_maxAperture * 0.25 * std::numbers::pi;
+}
 double EllipticAperture::apertureFunction(double x) const {
     if (2.0 * std::abs(x) <= m_length) {
         return m_maxAperture *
@@ -122,6 +132,9 @@ double EllipticAperture::apertureFunction(double x) const {
     return 0.0;
 }
 
+double OneSidedLinearAperture::getArea() const {
+    return m_length * m_maxAperture * 0.5;
+}
 double OneSidedLinearAperture::apertureFunction(double x) const {
     if (2.0 * std::abs(x) <= m_length) {
         return m_maxAperture * (x / m_length + 0.5);
