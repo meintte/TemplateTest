@@ -8,6 +8,9 @@ Sampler2d::~Sampler2d() = default;
 double Sampler2d::getArea() const { return m_box.volume(); }
 
 Eigen::Vector2d UniformSampler2d::sample() const {
-    return {Random::uniform(m_box.min().x(), m_box.max().x()),
-            Random::uniform(m_box.min().y(), m_box.max().y())};
+    const auto& boxMin = m_box.min();
+    const auto& boxMax = m_box.max();
+    return {Random::uniform(boxMin.x(), boxMax.x()),
+            Random::uniform(boxMin.y(), boxMax.y())};
+
 }

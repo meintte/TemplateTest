@@ -9,6 +9,16 @@ add_test(NAME cli.has_help COMMAND App --help)
 add_test(NAME cli.version_matches COMMAND App --version)
 set_tests_properties(cli.version_matches PROPERTIES PASS_REGULAR_EXPRESSION "${PROJECT_VERSION}")
 
+# Sampler2d
+add_unit_test(
+  Sampler2d
+  SOURCES
+  test_Sampler2d.cpp
+  LIBRARIES
+  TemplateTest::Random
+  SYSTEM_LIBRARIES
+  Eigen3::Eigen)
+
 # Grid
 add_unit_test(
   Domain
@@ -45,3 +55,40 @@ add_unit_test(
   test_Exponential.cpp
   LIBRARIES
   TemplateTest::Distributions)
+
+# Fractures
+add_unit_test(
+  Fracture
+  SOURCES
+  test_Fracture.cpp
+  LIBRARIES
+  TemplateTest::Fractures
+  SYSTEM_LIBRARIES
+  Eigen3::Eigen)
+
+add_unit_test(
+  FractureFromApertureFunction
+  SOURCES
+  test_FractureFromApertureFunction.cpp
+  LIBRARIES
+  TemplateTest::Fractures
+  SYSTEM_LIBRARIES
+  Eigen3::Eigen)
+
+add_unit_test(
+  Family
+  SOURCES
+  test_Family.cpp
+  LIBRARIES
+  TemplateTest::Fractures
+  SYSTEM_LIBRARIES
+  Eigen3::Eigen)
+
+add_unit_test(
+  Factory
+  SOURCES
+  test_Factory.cpp
+  LIBRARIES
+  TemplateTest::Fractures
+  SYSTEM_LIBRARIES
+  Eigen3::Eigen)

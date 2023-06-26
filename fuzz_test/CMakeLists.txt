@@ -7,9 +7,14 @@ target_link_libraries(
   fuzz_tester
   PRIVATE TemplateTest_options
           TemplateTest_warnings
-          fmt::fmt
           -coverage
           -fsanitize=fuzzer)
+target_link_system_libraries(
+  fuzz_tester
+  PRIVATE
+  fmt::fmt
+  -coverage
+  -fsanitize=fuzzer)
 target_compile_options(fuzz_tester PRIVATE -fsanitize=fuzzer)
 
 # Allow short runs during automated testing to see if something new breaks
