@@ -56,7 +56,7 @@ add_unit_test(
   SYSTEM_LIBRARIES
   Eigen3::Eigen)
 
-  add_unit_test(
+add_unit_test(
   FractureFromApertureFunction
   SOURCES
   test_FractureFromApertureFunction.cpp
@@ -70,11 +70,15 @@ add_unit_test(
   SOURCES
   test_Family.cpp
   LIBRARIES
-  TemplateTest::Fractures)
+  TemplateTest::Fractures
+  SYSTEM_LIBRARIES
+  Eigen3::Eigen)
 
 add_unit_test(
   Factory
   SOURCES
   test_Factory.cpp
   LIBRARIES
-  TemplateTest::Fractures)
+  TemplateTest::Fractures
+  SYSTEM_LIBRARIES
+  Eigen3::Eigen)

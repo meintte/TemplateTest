@@ -4,7 +4,7 @@ add_library(Fractures Fracture.cpp Family.cpp Factory.cpp)
 
 add_library(TemplateTest::Fractures ALIAS Fractures)
 
-target_link_libraries(Fractures PRIVATE TemplateTest_options TemplateTest_warnings)
+target_link_libraries(Fractures PRIVATE TemplateTest_options TemplateTest_warnings TemplateTest::Random)
 target_link_system_libraries(Fractures PRIVATE Eigen3::Eigen)
 
 target_include_directories(Fractures ${WARNING_GUARD} PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
