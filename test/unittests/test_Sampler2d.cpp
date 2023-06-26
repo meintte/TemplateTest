@@ -30,13 +30,9 @@ TEST_CASE("UniformSampler2d samples uniformly within the box") {
         sum_samples += sampler.sample();
     }
     Eigen::Vector2d mean_sample = sum_samples / numSamples;
-    std::cout << "here:\n" << mean_sample.transpose() << std::endl;
-    /*
-       REQUIRE_THAT(mean_sample.x(),
-                    Catch::Matchers::WithinAbs(0.5, absoluteTolerance));
-       REQUIRE_THAT(mean_sample.y(),
-                    Catch::Matchers::WithinAbs(0.0, absoluteTolerance));
-    */
-    REQUIRE(true);
+    REQUIRE_THAT(mean_sample.x(),
+                 Catch::Matchers::WithinAbs(0.5, absoluteTolerance));
+    REQUIRE_THAT(mean_sample.y(),
+                 Catch::Matchers::WithinAbs(0.0, absoluteTolerance));
 }
 // NOLINTEND (readability-function-cognitive-complexity)
