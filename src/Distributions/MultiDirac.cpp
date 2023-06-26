@@ -1,7 +1,6 @@
 #include <TemplateTest/Distributions/MultiDirac.hpp>
 #include <TemplateTest/Random/Random.hpp>
 #include <algorithm>
-#include <ranges>
 #include <stdexcept>
 
 namespace Distribution {
@@ -27,11 +26,12 @@ MultiDirac::MultiDirac(std::vector<double> x,
 }
 
 double MultiDirac::pdf(double x) const {
-    auto it = std::ranges::find_if(
-        m_x, [&](double val) { return std::abs(val - x) < m_tolerance; });
+    auto it = std::find_if(m_x.begin(), m_x.end(), [&](double val) {
+        return std::abs(val - x) < m_tolerance;
+    });
     if (it != m_x.end()) {
         return m_discDistribution.probabilities()[static_cast<size_t>(
-            std::ranges::distance(m_x.begin(), it))];
+            std::distance(m_x.begin(), it))];
     }
     return 0.0;
 }
