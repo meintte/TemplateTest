@@ -112,7 +112,7 @@ double LinearAperture::apertureFunction(double x) const {
 }
 
 double QuadraticAperture::getArea() const {
-    return m_length * m_maxAperture * 4.0 / 3.0;
+    return m_length * m_maxAperture * 2.0 / 3.0;
 }
 double QuadraticAperture::apertureFunction(double x) const {
     if (2.0 * std::abs(x) <= m_length) {
