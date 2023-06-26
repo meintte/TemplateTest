@@ -4,6 +4,7 @@
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/generators/catch_generators_all.hpp>
 #include <catch2/matchers/catch_matchers_floating_point.hpp>
+#include <numbers>
 // NOLINTBEGIN (readability-function-cognitive-complexity)
 
 // For floating point comparisons, we need to specify a tolerance.
@@ -28,6 +29,12 @@ constexpr double tolerance = 1e-5;
 
 TEST_CASE("ConstantAperture", "[Fractures][Fracture]") {
     Fractures::ConstantAperture fracture(start, end, maxAperture);
+
+    REQUIRE_THAT(
+        fracture.getArea(),
+        Catch::Matchers::WithinAbs(length * maxAperture, absoluteTolerance) ||
+            Catch::Matchers::WithinRel(length * maxAperture,
+                                       relativeTolerance));
 
     SECTION("Check y boundary") {
         auto dx = GENERATE(-0.5 + tolerance, -0.1, 0.0, 0.3, 0.5 - tolerance);
@@ -99,6 +106,12 @@ TEST_CASE("ConstantAperture", "[Fractures][Fracture]") {
 TEST_CASE("LinearAperture", "[Fractures][Fracture]") {
     Fractures::LinearAperture fracture(start, end, maxAperture);
 
+    REQUIRE_THAT(fracture.getArea(),
+                 Catch::Matchers::WithinAbs(0.5 * length * maxAperture,
+                                            absoluteTolerance) ||
+                     Catch::Matchers::WithinRel(0.5 * length * maxAperture,
+                                                relativeTolerance));
+
     SECTION("Check y boundary") {
         auto dx = GENERATE(-0.5 + tolerance, -0.1, 0.0, 0.3, 0.5 - tolerance);
         double dy = 0.5 * (1.0 - 2.0 * std::abs(dx));
@@ -168,6 +181,12 @@ TEST_CASE("LinearAperture", "[Fractures][Fracture]") {
 
 TEST_CASE("QuadraticAperture", "[Fractures][Fracture]") {
     Fractures::QuadraticAperture fracture(start, end, maxAperture);
+
+    REQUIRE_THAT(fracture.getArea(),
+                 Catch::Matchers::WithinAbs(2.0 / 3.0 * length * maxAperture,
+                                            absoluteTolerance) ||
+                     Catch::Matchers::WithinRel(
+                         2.0 / 3.0 * length * maxAperture, relativeTolerance));
 
     SECTION("Check y boundary") {
         auto dx = GENERATE(-0.5 + tolerance, -0.1, 0.0, 0.3, 0.5 - tolerance);
@@ -245,6 +264,14 @@ TEST_CASE("EllipticAperture", "[Fractures][Fracture]") {
         double af = maxAperture * 2.0 * dy;
         double kf = af * af / 12.0;
 
+        REQUIRE_THAT(fracture.getArea(),
+                     Catch::Matchers::WithinAbs(
+                         0.25 * std::numbers::pi * length * maxAperture,
+                         absoluteTolerance) ||
+                         Catch::Matchers::WithinRel(
+                             0.25 * std::numbers::pi * length * maxAperture,
+                             relativeTolerance));
+
         Eigen::Vector2d pos = center + dx * mainDirection;
         SECTION("Aperture") {
             // top
@@ -308,6 +335,12 @@ TEST_CASE("EllipticAperture", "[Fractures][Fracture]") {
 
 TEST_CASE("OneSidedLinearAperture", "[Fractures][Fracture]") {
     Fractures::OneSidedLinearAperture fracture(start, end, maxAperture);
+
+    REQUIRE_THAT(fracture.getArea(),
+                 Catch::Matchers::WithinAbs(0.5 * length * maxAperture,
+                                            absoluteTolerance) ||
+                     Catch::Matchers::WithinRel(0.5 * length * maxAperture,
+                                                relativeTolerance));
 
     SECTION("Check y boundary") {
         auto dx = GENERATE(-0.5 + tolerance, -0.1, 0.0, 0.3, 0.5 - tolerance);

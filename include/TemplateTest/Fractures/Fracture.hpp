@@ -14,6 +14,7 @@ public:
 
     const Eigen::Vector2d& getCenter() const;
     double getAngle() const;
+    virtual double getArea() const = 0;
 
     virtual double getAperture(const Eigen::Vector2d& point) const = 0;
     virtual double getPermeability(const Eigen::Vector2d& point) const = 0;
@@ -28,8 +29,10 @@ protected:
 
     Eigen::Vector2d toGlobalFrame(const Eigen::Vector2d& point) const;
 
-    virtual bool fineInsideCheckFromGlobalPoint(const Eigen::Vector2d& point) const = 0;
-    virtual bool fineInsideCheckFromLocalPoint(const Eigen::Vector2d& point) const = 0;
+    virtual bool fineInsideCheckFromGlobalPoint(
+        const Eigen::Vector2d& point) const = 0;
+    virtual bool fineInsideCheckFromLocalPoint(
+        const Eigen::Vector2d& point) const = 0;
 
     Eigen::Vector2d m_center;
     double m_angle;
@@ -52,8 +55,10 @@ public:
 protected:
     virtual double apertureFunction(double x) const = 0;
 
-    bool fineInsideCheckFromGlobalPoint(const Eigen::Vector2d& point) const override;
-    bool fineInsideCheckFromLocalPoint(const Eigen::Vector2d& point) const override;
+    bool fineInsideCheckFromGlobalPoint(
+        const Eigen::Vector2d& point) const override;
+    bool fineInsideCheckFromLocalPoint(
+        const Eigen::Vector2d& point) const override;
 
     double m_length;
     double m_maxAperture;
@@ -63,6 +68,8 @@ class ConstantAperture final : public FromApertureFunction {
 public:
     using FromApertureFunction::FromApertureFunction;
 
+    double getArea() const override;
+
 protected:
     double apertureFunction(double x) const override;
 };
@@ -70,6 +77,8 @@ protected:
 class LinearAperture final : public FromApertureFunction {
 public:
     using FromApertureFunction::FromApertureFunction;
+
+    double getArea() const override;
 
 protected:
     double apertureFunction(double x) const override;
@@ -79,6 +88,8 @@ class QuadraticAperture final : public FromApertureFunction {
 public:
     using FromApertureFunction::FromApertureFunction;
 
+    double getArea() const override;
+
 protected:
     double apertureFunction(double x) const override;
 };
@@ -87,6 +98,8 @@ class EllipticAperture final : public FromApertureFunction {
 public:
     using FromApertureFunction::FromApertureFunction;
 
+    double getArea() const override;
+
 protected:
     double apertureFunction(double x) const override;
 };
@@ -94,6 +107,8 @@ protected:
 class OneSidedLinearAperture final : public FromApertureFunction {
 public:
     using FromApertureFunction::FromApertureFunction;
+
+    double getArea() const override;
 
 protected:
     double apertureFunction(double x) const override;
