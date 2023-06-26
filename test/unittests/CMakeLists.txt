@@ -43,6 +43,13 @@ add_unit_test(
   TemplateTest::Distributions)
 
 add_unit_test(
+  MultiDirac
+  SOURCES
+  test_MultiDirac.cpp
+  LIBRARIES
+  TemplateTest::Distributions)
+
+add_unit_test(
   Uniform
   SOURCES
   test_Uniform.cpp

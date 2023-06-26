@@ -1,6 +1,11 @@
 include(GenerateExportHeader)
 
-add_library(Distributions Dirac.cpp Uniform.cpp Exponential.cpp)
+add_library(
+  Distributions
+  Dirac.cpp
+  MultiDirac.cpp
+  Uniform.cpp
+  Exponential.cpp)
 
 add_library(TemplateTest::Distributions ALIAS Distributions)
 
