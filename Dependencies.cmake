@@ -35,29 +35,25 @@ function(TemplateTest_setup_dependencies)
   endif()
 
   if(NOT TARGET Eigen3::Eigen)
-    find_package(Eigen3 3.3 NO_MODULE)
-    if(NOT Eigen3_FOUND)
-      message(AUTHOR_WARNING "Adding Eigen as a CPM dependency.")
-      cpmaddpackage(
-        NAME
-        Eigen
-        GITLAB_REPOSITORY
-        "libeigen/eigen"
-        GIT_TAG
-        "3.4.0"
-        OPTIONS
-        "EIGEN_BUILD_DOC OFF"
-        "EIGEN_LEAVE_TEST_IN_ALL_TARGET OFF"
-        "BUILD_TESTING OFF"
-        "EIGEN_BUILD_PKGCONFIG OFF"
-        "EIGEN_BUILD_BLAS OFF"
-        "EIGEN_BUILD_LAPACK OFF"
-        "EIGEN_BUILD_CMAKE_PACKAGE OFF"
-        EXCLUDE_FROM_ALL
-        YES
-        SYSTEM
-        YES)
-    endif()
+    cpmaddpackage(
+      NAME
+      Eigen
+      GITLAB_REPOSITORY
+      "libeigen/eigen"
+      GIT_TAG
+      "3.4.0"
+      OPTIONS
+      "EIGEN_BUILD_DOC OFF"
+      "EIGEN_LEAVE_TEST_IN_ALL_TARGET OFF"
+      "BUILD_TESTING OFF"
+      "EIGEN_BUILD_PKGCONFIG OFF"
+      "EIGEN_BUILD_BLAS OFF"
+      "EIGEN_BUILD_LAPACK OFF"
+      "EIGEN_BUILD_CMAKE_PACKAGE OFF"
+      EXCLUDE_FROM_ALL
+      YES
+      SYSTEM
+      YES)
   endif()
 
 endfunction()
