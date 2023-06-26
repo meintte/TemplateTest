@@ -13,6 +13,8 @@ class MockFracture : public Fractures::Fracture {
 public:
     using Fractures::Fracture::Fracture;
 
+    double getArea() const override { return 2.2; }
+
     double getAperture(
         [[maybe_unused]] const Eigen::Vector2d& point) const override {
         return 1.0;
@@ -52,6 +54,8 @@ TEST_CASE("Mock Fracture", "[Fractures][Fracture]") {
         REQUIRE_THAT(fracture.getAngle(),
                      Catch::Matchers::WithinAbs(angle, absoluteTolerance) ||
                          Catch::Matchers::WithinRel(angle, relativeTolerance));
+
+        REQUIRE(fracture.getArea() == 2.2);
 
         // SECTION("Aperture")
         REQUIRE(fracture.getAperture(Eigen::Vector2d{0.0, 0.0}) == 1.0);
