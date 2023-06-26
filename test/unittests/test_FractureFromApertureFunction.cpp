@@ -183,10 +183,10 @@ TEST_CASE("QuadraticAperture", "[Fractures][Fracture]") {
     Fractures::QuadraticAperture fracture(start, end, maxAperture);
 
     REQUIRE_THAT(fracture.getArea(),
-                 Catch::Matchers::WithinAbs(4.0 / 3.0 * length * maxAperture,
+                 Catch::Matchers::WithinAbs(2.0 / 3.0 * length * maxAperture,
                                             absoluteTolerance) ||
                      Catch::Matchers::WithinRel(
-                         4.0 / 3.0 * length * maxAperture, relativeTolerance));
+                         2.0 / 3.0 * length * maxAperture, relativeTolerance));
 
     SECTION("Check y boundary") {
         auto dx = GENERATE(-0.5 + tolerance, -0.1, 0.0, 0.3, 0.5 - tolerance);
