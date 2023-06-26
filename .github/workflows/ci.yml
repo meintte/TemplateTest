@@ -140,6 +140,11 @@ jobs:
         with:
           envFile: '.github/constants.env'
 
+      - name: Setup Fortran (for MultiConfig Eigen)
+        uses: awvwgk/setup-fortran@v1.1
+        with:
+          compiler: gcc
+          version: 11
 
       - name: Setup Cpp
         uses: aminya/setup-cpp@v1
